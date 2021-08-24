@@ -1,32 +1,37 @@
 import React from 'react';
+import {getNumPages} from "../library/library";
 
 const Pagination = ({paginate, setPaginate, showToDoListItemsLength}) => {
 
-    const lastPage = Math.ceil(showToDoListItemsLength / paginate.limit) + 1
-
-    console.log('lastPage', lastPage)
-    console.log('showToDoListItemsLength', showToDoListItemsLength)
+    const lastPage = Math.ceil(showToDoListItemsLength / paginate.limit)
 
 
-    const nextPage = () => {
-        setPaginate(state => ({...state, page: state.page++}))
-    }
-
-    const previousPage = () => {
-        setPaginate(state => ({...state, page: state.page--}))
+    const setPage = (page) => {
+        return () => {
+            setPaginate(state => ({...state, page}))
+        }
     }
 
     return (
         <div className="pagination">
             {paginate.page > 1 &&
-                <button onClick={previousPage}>
+                <button onClick={setPage(paginate.page - 1)}>
                     <i className="fas fa-arrow-left"/>
                 </button>
             }
 
+            {
+                getNumPages(lastPage, paginate.page).map(num_page =>
+                    <button
+                        onClick={setPage(num_page)}
+                    >
+                        {num_page}
+                    </button>
+                )
+            }
 
             {paginate.page < lastPage &&
-                <button onClick={nextPage}>
+                <button onClick={setPage(paginate.page + 1)}>
                     <i className="fas fa-arrow-right"/>
                 </button>
             }

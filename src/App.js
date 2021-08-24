@@ -3,7 +3,7 @@ import Filter from "./components/Filter";
 import Input from "./components/Input";
 import ToDoList from "./components/ToDoList";
 import Pagination from "./components/Pagination";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {convertAndGetTime} from "./library/library";
 
 export const ALL = 'all'
@@ -30,7 +30,7 @@ function App() {
 
     ])
 
-    const [showToDoListItems, setShowToDoListItems] = useState([])
+    const showToDoListItems = useRef([])
 
     const [filter, setFilter] = useState({
         sortDirection: true,
@@ -56,26 +56,26 @@ function App() {
 
     }, [filter])
 
-    useEffect(() => {
 
-        const begin = (paginate.page - 1) * paginate.limit
-        const tempArr = toDoListItems.slice(begin, begin + paginate.limit)
+
+    useEffect(() => {
 
         switch (filter.filterType) {
             case DONE:
-                setShowToDoListItems([...tempArr.filter(item => item.completed)])
+                showToDoListItems.current = [...toDoListItems.filter(item => item.completed)]
                 break
 
             case UNDONE:
-                setShowToDoListItems([...tempArr.filter(item => !item.completed)])
+                showToDoListItems.current = [...toDoListItems.filter(item => !item.completed)]
                 break
 
             default: //ALL
-                setShowToDoListItems([...tempArr])
+                showToDoListItems.current = [...toDoListItems]
                 break
         }
 
     }, [toDoListItems, filter, paginate])
+
 
 
     return (
@@ -85,8 +85,8 @@ function App() {
                     <h1>ToDo</h1>
                     <Input addItem={setToDoListItems}/>
                     <Filter setFilter={setFilter}/>
-                    <ToDoList showToDoListItems={showToDoListItems} setToDoListItems={setToDoListItems} />
-                    {/*<Pagination paginate={paginate} setPaginate={setPaginate} showToDoListItemsLength={showToDoListItems.length}/>*/}
+                    <ToDoList showToDoListItems={showToDoListItems.current.slice((paginate.page - 1) * paginate.limit, (paginate.page - 1) * paginate.limit + paginate.limit)} setToDoListItems={setToDoListItems} />
+                    <Pagination paginate={paginate} setPaginate={setPaginate} showToDoListItemsLength={showToDoListItems.current.length}/>
                 </div>
             </div>
 
