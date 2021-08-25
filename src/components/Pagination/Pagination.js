@@ -1,5 +1,6 @@
 import React from 'react';
-import {getNumPages} from "../library/library";
+import {getNumPages} from "../../library/library";
+import classes from './styles.module.css'
 
 const Pagination = ({paginate, setPaginate, showToDoListItemsLength}) => {
 
@@ -13,7 +14,7 @@ const Pagination = ({paginate, setPaginate, showToDoListItemsLength}) => {
     }
 
     return (
-        <div className="pagination">
+        <div className={classes.pagination}>
             {paginate.page > 1 &&
                 <button onClick={setPage(paginate.page - 1)}>
                     <i className="fas fa-arrow-left"/>
@@ -23,6 +24,7 @@ const Pagination = ({paginate, setPaginate, showToDoListItemsLength}) => {
             {
                 getNumPages(lastPage, paginate.page).map(num_page =>
                     <button
+                        key={num_page}
                         onClick={setPage(num_page)}
                     >
                         {num_page}

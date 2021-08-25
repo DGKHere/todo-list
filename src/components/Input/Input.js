@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import classes from './styles.module.css'
+
 
 const Input = ({addItem}) => {
 
@@ -21,6 +23,7 @@ const Input = ({addItem}) => {
 
     return (
         <input
+            className={classes.input_form}
             type="text"
             placeholder="i want to ..."
             value={value}

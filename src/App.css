@@ -23,103 +23,10 @@
   color: teal;
 }
 
-.todo input{
-  padding: 5px 15px;
-  border: 2px solid teal;
-  border-radius: 5px;
-  margin-top: 20px;
-  width: 100%;
-}
-
-
-.filter-panel{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
-}
-
-
-
-.filter-panel__buttons button{
-  padding: 5px 10px;
-  cursor: pointer;
-  background: teal;
-  border-radius: 5px;
-  border: 2px solid teal;
-  color: #fff;
-}
-
-.filter-panel__buttons button + button {
-  margin-left: 5px;
-}
-
-.filter-panel__sort span{
-  margin-right: 5px;
-}
-
-.filter-panel__sort button + button{
-  margin-left: 5px;
-}
-
-
-.todo__list{
-  list-style: none;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.todo__list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid teal;
-  border-radius: 5px;
-  padding: 5px 10px;
-}
-
-.todo__list-item + .todo__list-item{
-  margin-top: 10px;
-}
-
-.todo__list-item-left button{
-  margin-right: 5px;
-}
-
-.todo__list-item-right button{
-  margin-left: 5px;
-}
-
 .icon-button{
   cursor: pointer;
   font-size: 18px;
   background: transparent;
   border: transparent;
   color: teal;
-}
-
-.pagination{
-  margin-top: 20px;
-}
-
-.pagination button{
-  padding: 5px;
-  background: teal;
-  border-radius: 5px;
-  border: 1px solid teal;
-  color: #fff;
-  cursor: pointer;
-}
-
-.pagination button + button{
-  margin-left: 5px;
-}
-
-.completed{
-  background: #eaffe9;
-}
-
-.hidden{
-  display: none;
 }

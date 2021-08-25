@@ -1,38 +1,46 @@
 import React from 'react';
-import {convertAndGetTime} from "../library/library";
-import {ALL, DONE, UNDONE} from "../App";
+import {ALL, DONE, UNDONE} from "../../App";
+import classes from "./styles.module.css"
 
 const Filter = ({setFilter}) => {
 
+    const handlerFilterButton = (filterType) => {
+        return () => setFilter(state => ({...state, filterType}))
+    }
+
+    const handlerSortButton = (ascending) => {
+        return () => setFilter(state => ({...state, sortDirection: ascending}))
+    }
+
     return (
-        <div className="filter-panel">
-            <div className="filter-panel__buttons">
+        <div className={classes.filterPanel}>
+            <div className={classes.filterButtons}>
                 <button
-                    onClick={() => setFilter(state => ({...state, filterType: ALL}))}
+                    onClick={handlerFilterButton(ALL)}
                 >
                     All
                 </button>
                 <button
-                    onClick={() => setFilter(state => ({...state, filterType: DONE}))}
+                    onClick={handlerFilterButton(DONE)}
                 >
                     Done
                 </button>
                 <button
-                    onClick={() => setFilter(state => ({...state, filterType: UNDONE}))}
+                    onClick={handlerFilterButton(UNDONE)}
                 >
                     Undone
                 </button>
             </div>
-            <div className="filter-panel__sort">
+            <div className={classes.sortButtons}>
                 <span>Sort by Date</span>
                 <button
-                    onClick={() => setFilter(state => ({...state, sortDirection: true}))}
+                    onClick={handlerSortButton(true)}
                     className="icon-button"
                 >
                     <i className="fas fa-arrow-up"/>
                 </button>
                 <button
-                    onClick={() => setFilter(state => ({...state, sortDirection: false}))}
+                    onClick={handlerSortButton(false)}
                     className="icon-button"
                 >
                     <i className="fas fa-arrow-down"/>

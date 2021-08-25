@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './styles.module.css';
 
 const ToDoListItem = ({toDoListItem, setToDoListItems}) => {
 
@@ -15,8 +16,8 @@ const ToDoListItem = ({toDoListItem, setToDoListItems}) => {
     }
 
     return (
-        <li className={toDoListItem.completed ? "todo__list-item completed" : "todo__list-item"}>
-            <div className="todo__list-item-left">
+        <li className={toDoListItem.completed ? [classes.listItem, classes.completed].join(' '): classes.listItem}>
+            <div className={classes.listItemLeft}>
                 <button
                     onClick={markCompleted}
                     className="icon-button"
@@ -25,7 +26,7 @@ const ToDoListItem = ({toDoListItem, setToDoListItems}) => {
                 </button>
                 <span>{toDoListItem.value}</span>
             </div>
-            <div className="todo__list-item-right">
+            <div className={classes.listItemRight}>
                 <span>{toDoListItem.date}</span>
                 <button
                     onClick={deleteItem}
